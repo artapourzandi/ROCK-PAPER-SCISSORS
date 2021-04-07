@@ -11,7 +11,8 @@ function computerPlay() {
     return arr[random_pick];
 }
 
-let playerSelection = 'Rock';
+let pre_playerSelection = window.prompt("Play your move:");
+let playerSelection = pre_playerSelection.toLowerCase();
 let machine = computerPlay();
 console.log(machine);
 
@@ -37,10 +38,13 @@ let one_round = playRound(playerSelection, machine);
 console.log(one_round);
 
 const game = () => {
-  player_score = 0; 
-  machine_score = 0;
+  let player_score = 0; 
+  let machine_score = 0;
+  
   for (let i = 1; i < 6; i++) {
-    let result = playRound(playerSelection, machine);
+    let for_machine = computerPlay();
+    let result = playRound(playerSelection, for_machine);
+    // console.log(result);
       if (result === 'You Lose! Paper beats Rock') {
         player_score ++;
       } else if (result === 'I Lose! rock beats scissors') {
@@ -48,11 +52,6 @@ const game = () => {
       }
   }
   return machine_score;
-  // if (player_score > machine_score) {
-  //   return (player_score);
-  // } else {
-  //   return machine_score;
-  // }
 };
 
 let final_score = game();
